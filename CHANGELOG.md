@@ -1,5 +1,11 @@
 # Changelog
 
+## v2.12.1 (2026-03-02)
+
+### Fixed
+- **mac-overlay cleanup** — orphaned `mac-overlay.js` osascript processes are now killed on `SessionEnd`, preventing stale overlay popups after Claude Code exits (#299, #301)
+- **Adapter cooldown bug** — `amp.sh` and `antigravity.sh` no longer prematurely mark threads idle during the Stop cooldown window, fixing dropped Stop events for rapid task completions (#300)
+
 ## v2.12.0 (2026-02-27)
 
 ### Added
