@@ -113,7 +113,7 @@ _INSTALL_DIR="$PEON_DIR"
 # Priority: Claude hooks dir first (matches where the hook actually runs from),
 # then CESP shared path as fallback (fixes #250: CLI must write config to the
 # same location the hook reads from).
-if [ ! -d "$PEON_DIR/packs" ]; then
+if [ -z "$CLAUDE_PEON_DIR" ] && [ ! -d "$PEON_DIR/packs" ]; then
   _hooks_dir="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/peon-ping"
   if [ -d "$_hooks_dir/packs" ]; then
     PEON_DIR="$_hooks_dir"
