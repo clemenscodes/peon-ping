@@ -87,7 +87,7 @@ in
     # Install sound packs via activation script (only if packs specified)
     home.activation.peonPacksInstall = lib.mkIf (cfg.installPacks != [ ]) (
       lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        $DRY_RUN_CMD ${cfg.package}/bin/peon packs install ${lib.concatStringsSep "," cfg.installPacks}
+        ${cfg.package}/bin/peon packs install ${lib.concatStringsSep "," cfg.installPacks}
       ''
     );
 
