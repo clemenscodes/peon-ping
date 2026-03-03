@@ -97,7 +97,7 @@ in
       alias peon="${cfg.package}/bin/peon"
     '';
 
-    programs.bash.initContent = mkIf cfg.enableBashIntegration ''
+    programs.bash.initExtra = mkIf cfg.enableBashIntegration ''
       source ${cfg.package}/share/bash-completion/completions/peon 2>/dev/null || true
       alias peon="${cfg.package}/bin/peon"
     '';
