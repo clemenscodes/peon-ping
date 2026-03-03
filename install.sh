@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # peon-ping installer
 # Works both via `curl | bash` (downloads from GitHub) and local clone
 # Re-running updates core files; sounds are version-controlled in the repo

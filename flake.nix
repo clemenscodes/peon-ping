@@ -77,6 +77,11 @@
 
             # bin/peon wrapper
             mkdir -p "$out/bin"
+
+            makeWrapper ${pkgs.bash}/bin/bash "$out/bin/hook-handle-use" \
+              --add-flags "$share/scripts/hook-handle-use.sh" \
+              --prefix PATH : ${pkgs.lib.makeBinPath runtimeDeps}
+
             makeWrapper ${pkgs.bash}/bin/bash "$out/bin/peon" \
               --add-flags "$share/peon.sh" \
               --prefix PATH : ${pkgs.lib.makeBinPath runtimeDeps}
