@@ -3135,12 +3135,13 @@ if category and not paused:
             state_dirty = True
             file_ref = str(pick.get('file', ''))
             if '/' in file_ref:
-                candidate = os.path.realpath(os.path.join(pack_dir, file_ref))
+                logical_path = os.path.join(pack_dir, file_ref)
             else:
-                candidate = os.path.realpath(os.path.join(pack_dir, 'sounds', file_ref))
-            pack_root = os.path.realpath(pack_dir) + os.sep
-            if candidate.startswith(pack_root):
-                sound_file = candidate
+                logical_path = os.path.join(pack_dir, 'sounds', file_ref)
+            if os.path.commonpath([pack_dir, logical_path]) != pack_dir:
+                logical_path = ''
+            if logical_path and os.path.exists(logical_path):
+                sound_file = os.path.realpath(logical_path)
             # Icon resolution chain (CESP §5.5)
             icon_candidate = ''
             if pick.get('icon'):
