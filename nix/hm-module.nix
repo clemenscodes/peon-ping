@@ -92,12 +92,12 @@ in
     );
 
     # Shell completions
-    programs.zsh.initExtra = mkIf cfg.enableZshIntegration ''
+    programs.zsh.initContent = mkIf cfg.enableZshIntegration ''
       source ${cfg.package}/share/zsh/site-functions/_peon 2>/dev/null || true
       alias peon="${cfg.package}/bin/peon"
     '';
 
-    programs.bash.initExtra = mkIf cfg.enableBashIntegration ''
+    programs.bash.initContent = mkIf cfg.enableBashIntegration ''
       source ${cfg.package}/share/bash-completion/completions/peon 2>/dev/null || true
       alias peon="${cfg.package}/bin/peon"
     '';
