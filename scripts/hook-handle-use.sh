@@ -1,8 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # UserPromptSubmit hook for /peon-ping-use command
 # Intercepts `/peon-ping-use <pack>` before it reaches the LLM
-set -euo pipefail
-
 INPUT=$(cat)
 LOG_FILE="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/hooks/peon-ping/hook-handle-use.log"
 LOG_FALLBACK="${TMPDIR:-/tmp}/peon-ping-hook.log"

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # peon-ping: Warcraft III Peon voice lines for Claude Code hooks
 # Replaces notify.sh — handles sounds, tab titles, and notifications
-set -uo pipefail
 
 # --- Platform detection ---
 detect_platform() {
