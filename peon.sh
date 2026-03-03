@@ -2255,8 +2255,8 @@ for i, s in enumerate(sounds):
         fpath = os.path.realpath(os.path.join(pack_dir, file_ref))
     else:
         fpath = os.path.realpath(os.path.join(pack_dir, 'sounds', file_ref))
-    pack_root = os.path.realpath(pack_dir) + os.sep
-    if not fpath.startswith(pack_root):
+    pack_root = os.path.realpath(pack_dir)
+    if os.path.commonpath([pack_root, fpath]) != pack_root:
         continue
     print('SOUND:' + fpath + '|' + label)
 " 2>"$PEON_DIR/.preview_err")
