@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # peon-ping: Warcraft III Peon voice lines for Claude Code hooks
 # Replaces notify.sh — handles sounds, tab titles, and notifications
 set -uo pipefail
@@ -2255,9 +2255,16 @@ for i, s in enumerate(sounds):
         fpath = os.path.realpath(os.path.join(pack_dir, file_ref))
     else:
         fpath = os.path.realpath(os.path.join(pack_dir, 'sounds', file_ref))
-    pack_root = os.path.realpath(pack_dir)
-    if os.path.commonpath([pack_root, fpath]) != pack_root:
+    logical_path = os.path.join(pack_dir, file_ref)
+    
+    # protect against path traversal without breaking symlinks
+    if not os.path.commonpath([pack_dir, logical_path]) == pack_dir:
         continue
+    
+    if not os.path.exists(logical_path):
+        continue
+    
+    fpath = os.path.realpath(logical_path)
     print('SOUND:' + fpath + '|' + label)
 " 2>"$PEON_DIR/.preview_err")
     PREVIEW_RC=$?
