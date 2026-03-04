@@ -78,6 +78,10 @@
             # bin/peon wrapper
             mkdir -p "$out/bin"
 
+            makeWrapper ${pkgs.bash}/bin/bash "$out/bin/peon-codex-adapter" \
+              --add-flags "$share/adapters/codex.sh" \
+              --prefix PATH : ${pkgs.lib.makeBinPath runtimeDeps}
+
             makeWrapper ${pkgs.bash}/bin/bash "$out/bin/hook-handle-use" \
               --add-flags "$share/scripts/hook-handle-use.sh" \
               --prefix PATH : ${pkgs.lib.makeBinPath runtimeDeps}
